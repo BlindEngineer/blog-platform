@@ -1,0 +1,35 @@
+@import 'src/services/constants';
+
+.main {
+  height: 80px;
+  background-color: $elementsBackground;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+}
+
+.mainLink {
+  text-decoration: none;
+}
+
+
+.title {
+  font-family: Inter UI, sans-serif;
+  color: $heading-color;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.signIn {
+  padding-right: 20px;
+}
+
+.signOut {
+  margin-left: 19px;
+  padding: 8px 18px;
+  border: 1px solid $success-color;
+  border-radius: 5px;
+  color: $success-color;
+}

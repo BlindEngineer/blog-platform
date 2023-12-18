@@ -1,0 +1,115 @@
+@import 'src/services/constants';
+
+.container{
+  padding: 15px 14px 15px 19px;
+  border-radius: 5px;
+  background-color: $elementsBackground;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Inter UI, sans-serif;
+
+}
+
+.headContainer {
+  border-radius: 5px;
+  background-color: $elementsBackground;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  height: 110px;
+}
+
+.articleSide {
+ max-width: 682px;
+}
+
+.titleAndLikes {
+display: flex;
+  align-items: center;
+margin-bottom: 8px;
+}
+
+.previewTitle {
+  color: $info-color;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  text-decoration: none;
+}
+.likeIcon {
+  width: 16px;
+  height: 16px;
+  background: url("../../assets/img/Heart_corazon1.svg");
+  margin-left: 13px;
+}
+
+.noLikeIcon {
+  width: 16px;
+  height: 16px;
+  background: url("../../assets/img/heart1.svg");
+  margin-left: 13px;
+}
+
+
+.counter {
+  margin-left: 5px;
+  font-size: 12px;
+  line-height: 22px;
+  color: $text-color;
+}
+.tags {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  margin-bottom: 8px;
+
+}
+
+.tag {
+  font-size: 12px;
+  border: 1px solid $text-color-secondary;
+  border-radius: 2px;
+  padding: 3px 6px;
+  color: $text-color-secondary;
+}
+.text {
+  font-size: 12px;
+  line-height: 22px;
+  color: $text-color;
+}
+
+.textForSinglePage {
+  font-size: 12px;
+  line-height: 22px;
+  color: $text-color-secondary;
+}
+
+.personSide{
+  display: flex;
+  gap: 12px;
+}
+
+.nameAndDate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.name {
+  font-size: 18px;
+  line-height: 28px;
+  color: $heading-color;
+}
+.postDate {
+  font-size: 12px;
+  line-height: 22px;
+  color: $text-color-secondary;
+}
+.avatar {
+width: 46px;
+height: 46px;
+  border-radius: 50%;
+}
