@@ -1,6 +1,6 @@
 @import 'src/services/constants';
 
-.container{
+.container {
   padding: 15px 14px 15px 19px;
   border-radius: 5px;
   background-color: $elementsBackground;
@@ -8,8 +8,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: Inter UI, sans-serif;
-
+  font-family:
+    Inter UI,
+    sans-serif;
 }
 
 .headContainer {
@@ -23,13 +24,13 @@
 }
 
 .articleSide {
- max-width: 682px;
+  max-width: 634px;
 }
 
 .titleAndLikes {
-display: flex;
+  display: flex;
   align-items: center;
-margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .previewTitle {
@@ -39,21 +40,25 @@ margin-bottom: 8px;
   font-weight: 400;
   line-height: 28px;
   text-decoration: none;
+  max-height: 28px;
+  max-width: 580px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  overflow-wrap: normal;
 }
 .likeIcon {
   width: 16px;
   height: 16px;
-  background: url("../../assets/img/Heart_corazon1.svg");
+  background: url('../../assets/img/Heart_corazon1.svg');
   margin-left: 13px;
 }
 
 .noLikeIcon {
   width: 16px;
   height: 16px;
-  background: url("../../assets/img/heart1.svg");
+  background: url('../../assets/img/heart1.svg');
   margin-left: 13px;
 }
-
 
 .counter {
   margin-left: 5px;
@@ -63,11 +68,21 @@ margin-bottom: 8px;
 }
 .tags {
   display: flex;
+  flex-direction: row;
   list-style: none;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   gap: 8px;
   margin-bottom: 8px;
 
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
+
+
 
 .tag {
   font-size: 12px;
@@ -80,15 +95,19 @@ margin-bottom: 8px;
   font-size: 12px;
   line-height: 22px;
   color: $text-color;
+  max-height: 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .textForSinglePage {
   font-size: 12px;
   line-height: 22px;
   color: $text-color-secondary;
+
 }
 
-.personSide{
+.personSide {
   display: flex;
   gap: 12px;
 }
@@ -109,7 +128,7 @@ margin-bottom: 8px;
   color: $text-color-secondary;
 }
 .avatar {
-width: 46px;
-height: 46px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
 }

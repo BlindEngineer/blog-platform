@@ -5,7 +5,6 @@ const articlesSlice = createSlice({
   initialState: {
     loading: false,
     error: false,
-    authorisation: false,
     articles: [],
     singleArticle: {},
     currentPage: 1,

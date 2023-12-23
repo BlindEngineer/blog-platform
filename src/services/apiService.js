@@ -1,18 +1,31 @@
 import {
-  setLoadingOn,
-  setLoadingOff,
   setArticles,
   setArticlesCount,
-  setSingleArticle,
   setError,
+  setLoadingOff,
+  setLoadingOn,
+  setSingleArticle,
 } from '../store/articlesSlice'
+import { setUserError, setUserInformation, setUserLoadingOff, setUserLoadingOn } from '../store/userSlice'
 
 const baseUrl = 'https://blog.kata.academy/api/'
 
 async function fetchResources(url, options) {
   const result = await fetch(url, options)
   if (!result.ok) {
-    throw new Error(`Could not fetch ${url}. Received status ${result.status}`)
+    if (result.status === 404) {
+      throw new Error(
+        `Received status ${result.status}.
+        Невозможно получить доступ к ресурсу по адресу ${url}. 
+        Проверьте правильность запроса. Удачи! `
+      )
+    } else if (result.status === 422) {
+      throw new Error(
+        `Received status ${result.status}.
+        Данные, введенные в одном или нескольких полях, не соответствуют условиям. 
+        Проверьте правильность передаваемых данных. Удачи! `
+      )
+    }
   }
   return result.json()
 }
@@ -42,4 +55,56 @@ const getSingleArticle = (slug) => (dispatch) => {
     })
 }
 
-export { getArticles, fetchResources, getSingleArticle }
+const postNewUser = (newUser) => (dispatch) => {
+  fetchResources(`${baseUrl}users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newUser),
+  }).then((response) => {
+    dispatch(setUserInformation(response))
+    localStorage.setItem('currentUser', JSON.stringify(response))
+  })
+}
+
+const logInUser = (data) => (dispatch) => {
+  dispatch(setUserLoadingOn())
+  fetchResources(`${baseUrl}users/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      dispatch(setUserInformation(response))
+      localStorage.setItem('currentUser', JSON.stringify(response))
+      dispatch(setUserLoadingOff())
+    })
+    .catch((error) => {
+      dispatch(setUserError(error.message))
+    })
+}
+
+const updateUser = (data, token) => (dispatch) => {
+  dispatch(setUserLoadingOn())
+  fetchResources(`${baseUrl}user`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      dispatch(setUserInformation(response))
+      localStorage.setItem('currentUser', JSON.stringify(response))
+      dispatch(setUserLoadingOff())
+    })
+    .catch((error) => {
+      dispatch(setUserError(error.message))
+    })
+}
+
+export { getArticles, fetchResources, getSingleArticle, postNewUser, logInUser, updateUser }

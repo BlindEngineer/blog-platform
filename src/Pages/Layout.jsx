@@ -1,8 +1,19 @@
 import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Header from '../components/Header/Header'
+import { setUserInformation } from '../store/userSlice'
 
 function Layout() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (localStorage.getItem('currentUser')) {
+      const lsUser = JSON.parse(localStorage.getItem('currentUser'))
+      console.log(lsUser)
+      dispatch(setUserInformation(lsUser))
+    }
+  }, [dispatch])
   return (
     <>
       <Header />

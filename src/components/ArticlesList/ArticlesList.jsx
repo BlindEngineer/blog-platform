@@ -12,11 +12,11 @@ import classes from './ArticlesList.module.scss'
 const { listContainer } = classes
 
 function ArticlesList() {
-  const articles = useSelector((state) => state.articles)
-  const articlesCount = useSelector((state) => state.articlesCount)
-  const currentPage = useSelector((state) => state.currentPage)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
+  const articles = useSelector((state) => state.articlesReducer.articles)
+  const articlesCount = useSelector((state) => state.articlesReducer.articlesCount)
+  const currentPage = useSelector((state) => state.articlesReducer.currentPage)
+  const loading = useSelector((state) => state.articlesReducer.loading)
+  const error = useSelector((state) => state.articlesReducer.error)
   const dispatch = useDispatch()
   const onPageChange = (page) => {
     dispatch(setCurrentPage(page))
@@ -31,7 +31,7 @@ function ArticlesList() {
       {!loading ? (
         <>
           <div className={listContainer}>{elements}</div>
-          <Paginator currentPage={currentPage} onChange={onPageChange} totalPages={Math.ceil(articlesCount / 5)} />
+          <Paginator currentPage={currentPage} onChange={onPageChange} totalPages={Math.ceil(articlesCount / 5) || 1} />
         </>
       ) : null}
     </>

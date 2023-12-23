@@ -9,9 +9,9 @@ import ErrorIndicator from '../components/ErrorIndicator/ErrorIndicator'
 
 function SingleArticle() {
   const { slug } = useParams()
-  const article = useSelector((state) => state.singleArticle)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
+  const article = useSelector((state) => state.articlesReducer.singleArticle)
+  const loading = useSelector((state) => state.articlesReducer.loading)
+  const error = useSelector((state) => state.articlesReducer.error)
   const dispatch = useDispatch()
 
   useEffect(() => {

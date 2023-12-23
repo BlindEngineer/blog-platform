@@ -1,0 +1,86 @@
+@import 'src/services/constants';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 384px;
+  min-height: 500px;
+  padding: 48px 32px;
+  margin: 38px auto;
+  border-radius: 6px;
+  border: 1px solid $gray-border;
+  background-color: $elementsBackground;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: center;
+  color: $form-black;
+  margin-bottom: 21px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  list-style: none;
+}
+
+.listElem {
+  display: flex;
+  flex-direction: column;
+}
+
+.textLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.textInput {
+  width: calc(100% - 24px);
+  font-size: 16px;
+  line-height: 24px;
+  color: $form-black;
+  border: 1px solid $gray-border;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &::placeholder{
+    color: $placeholder;
+  }
+}
+
+.errorTextInput {
+  border: 1px solid $error-color;
+}
+
+.submit {
+  width: 286px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: $info-color;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: $elementsBackground;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.inputError {
+  color: $error-color;
+  margin-top: -10px ;
+  margin-bottom: 0 ;
+}
+

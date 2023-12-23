@@ -6,7 +6,7 @@ import { getArticles } from '../services/apiService'
 
 function Homepage() {
   const dispatch = useDispatch()
-  const page = useSelector((state) => state.currentPage)
+  const page = useSelector((state) => state.articlesReducer.currentPage)
 
   useEffect(() => {
     dispatch(getArticles(page))
