@@ -1,4 +1,5 @@
 import {
+  clearSingleArticle,
   setArticles,
   setArticlesCount,
   setError,
@@ -6,7 +7,7 @@ import {
   setLoadingOn,
   setSingleArticle,
 } from '../store/articlesSlice'
-import { setUserError, setUserInformation, setUserLoadingOff, setUserLoadingOn } from '../store/userSlice'
+import { setChangeOn, setUserError, setUserInformation, setUserLoadingOff, setUserLoadingOn } from '../store/userSlice'
 
 const baseUrl = 'https://blog.kata.academy/api/'
 
@@ -48,6 +49,42 @@ const getSingleArticle = (slug) => (dispatch) => {
   fetchResources(`${baseUrl}articles/${slug}`)
     .then((result) => {
       dispatch(setSingleArticle(result.article))
+      dispatch(setLoadingOff())
+    })
+    .catch((error) => {
+      dispatch(setError(error.message))
+    })
+}
+
+const createArticle = (data, token, slug) => (dispatch) => {
+  dispatch(setLoadingOn())
+  fetchResources(`${baseUrl}articles${slug ? `/${slug}` : ''}`, {
+    method: `${slug ? 'PUT' : 'POST'}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((result) => {
+      dispatch(setSingleArticle(result.article))
+      dispatch(setLoadingOff())
+    })
+    .catch((error) => {
+      dispatch(setError(error.message))
+    })
+}
+
+const deleteArticle = (slug, token) => (dispatch) => {
+  dispatch(setLoadingOn())
+  fetchResources(`${baseUrl}articles/${slug}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(() => {
+      dispatch(clearSingleArticle())
       dispatch(setLoadingOff())
     })
     .catch((error) => {
@@ -101,10 +138,20 @@ const updateUser = (data, token) => (dispatch) => {
       dispatch(setUserInformation(response))
       localStorage.setItem('currentUser', JSON.stringify(response))
       dispatch(setUserLoadingOff())
+      dispatch(setChangeOn())
     })
     .catch((error) => {
       dispatch(setUserError(error.message))
     })
 }
 
-export { getArticles, fetchResources, getSingleArticle, postNewUser, logInUser, updateUser }
+export {
+  getArticles,
+  fetchResources,
+  createArticle,
+  getSingleArticle,
+  postNewUser,
+  logInUser,
+  updateUser,
+  deleteArticle,
+}

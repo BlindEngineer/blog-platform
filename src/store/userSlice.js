@@ -9,6 +9,7 @@ const userSlice = createSlice({
     token: null,
     error: false,
     attempt: false,
+    changes: false,
   },
   reducers: {
     setUserLoadingOn(state) {
@@ -27,8 +28,22 @@ const userSlice = createSlice({
     setAuthOff(state) {
       return { ...state, attempt: false, error: false, email: null, token: null, userName: null, userImage: null }
     },
+    setChangeOn(state) {
+      return { ...state, changes: true }
+    },
+    setChangeOff(state) {
+      return { ...state, changes: false }
+    },
   },
 })
 
-export const { setUserLoadingOn, setUserLoadingOff, setUserError, setUserInformation, setAuthOff } = userSlice.actions
+export const {
+  setUserLoadingOn,
+  setUserLoadingOff,
+  setUserError,
+  setUserInformation,
+  setAuthOff,
+  setChangeOn,
+  setChangeOff,
+} = userSlice.actions
 export default userSlice.reducer

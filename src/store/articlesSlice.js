@@ -22,6 +22,9 @@ const articlesSlice = createSlice({
     setSingleArticle(state, action) {
       return { ...state, singleArticle: action.payload }
     },
+    clearSingleArticle(state) {
+      return { ...state, singleArticle: {} }
+    },
     setLoadingOn(state) {
       return { ...state, loading: true, error: false }
     },
@@ -42,5 +45,6 @@ export const {
   setLoadingOn,
   setLoadingOff,
   setError,
+  clearSingleArticle,
 } = articlesSlice.actions
 export default articlesSlice.reducer

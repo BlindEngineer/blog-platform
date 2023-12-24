@@ -82,8 +82,6 @@
   }
 }
 
-
-
 .tag {
   font-size: 12px;
   border: 1px solid $text-color-secondary;
@@ -104,10 +102,17 @@
   font-size: 12px;
   line-height: 22px;
   color: $text-color-secondary;
-
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 .personSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.person {
   display: flex;
   gap: 12px;
 }
@@ -132,3 +137,35 @@
   height: 46px;
   border-radius: 50%;
 }
+
+.controlButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.button {
+  font-family:
+          Inter UI,
+          sans-serif;
+  color: $heading-color;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 6px 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.red {
+  border: 1px solid $error-color;
+  border-radius: 5px;
+  color: $error-color;
+}
+
+.green {
+  border: 1px solid $success-color;
+  border-radius: 5px;
+  color: $success-color;
+}
+

@@ -10,7 +10,6 @@ function Layout() {
   useEffect(() => {
     if (localStorage.getItem('currentUser')) {
       const lsUser = JSON.parse(localStorage.getItem('currentUser'))
-      console.log(lsUser)
       dispatch(setUserInformation(lsUser))
     }
   }, [dispatch])

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
+import { Navigate } from 'react-router-dom'
 
 import { updateUser } from '../../services/apiService'
 import ErrorIndicator from '../ErrorIndicator/ErrorIndicator'
@@ -10,9 +10,9 @@ import classes from './EditProfile.module.scss'
 
 function EditProfile() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const user = useSelector((state) => state.userReducer)
-  const { token, error } = user
+  const { token, error, changes } = user
+
   const {
     register,
     handleSubmit,
@@ -28,13 +28,13 @@ function EditProfile() {
       },
     }
     await dispatch(updateUser(newInfo, token))
-    navigate('/', { replace: true })
   }
 
   const regName = register('username', {
     required: true,
     minLength: 3,
     maxLength: 20,
+    pattern: /\S+/,
   })
 
   const regEmail = register('email', {
@@ -58,6 +58,7 @@ function EditProfile() {
   return (
     <div className={container}>
       {error ? <ErrorIndicator message={error} /> : null}
+      {!error && changes ? <Navigate to="/" replace /> : null}
       <h2 className={header}>Edit Profile</h2>
       <form className={form} onSubmit={handleSubmit(onSubmit)}>
         <ul className={list}>
@@ -79,6 +80,7 @@ function EditProfile() {
                   {errors.username.type === 'required' && 'Поле обязательно для заполнения.'}
                   {errors.username.type === 'minLength' && 'Минимальная длина поля - 3 символа.'}
                   {errors.username.type === 'maxLength' && 'Максимальная длина поля - 20 символов.'}
+                  {errors.username.type === 'pattern' && 'Пробельные символы запрещены'}
                 </div>
               )}
             </label>

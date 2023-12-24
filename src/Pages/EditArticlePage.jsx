@@ -1,7 +1,7 @@
 import CreateAndEditArticle from '../components/CreateAndEditArticle/CreateAndEditArticle'
 
-function NewArticlePage() {
+function EditArticlePage() {
   return <CreateAndEditArticle />
 }
 
-export default NewArticlePage
+export default EditArticlePage

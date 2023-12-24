@@ -1,16 +1,16 @@
 @import 'src/services/constants';
 
 .container {
-  display: flex;
-  flex-direction: column;
-  width: 384px;
-  min-height: 600px;
   padding: 48px 32px;
-  margin: 38px auto;
-  border-radius: 6px;
-  border: 1px solid $gray-border;
+  border-radius: 5px;
   background-color: $elementsBackground;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family:
+          Inter UI,
+          sans-serif;
 }
 
 .header {
@@ -50,7 +50,7 @@
   color: $form-black;
   border: 1px solid $gray-border;
   padding: 8px 12px;
-  margin-bottom: 12px;
+  margin-bottom: 21px;
   border-radius: 4px;
   cursor: pointer;
 
@@ -59,35 +59,18 @@
   }
 }
 
+.textArea {
+  height: 168px;
+}
+
 .errorTextInput {
   border: 1px solid $error-color;
 }
 
-.breakline {
-  background-color: $gray-border;
-  height: 1px;
-  margin-top: 5px;
-  margin-bottom: 8px;
-}
-
-.agreement {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.checkLabel {
-  font-size: 14px;
-  line-height: 22px;
-  color: $checkbox-text;
-  cursor: pointer;
-}
-
-.checkbox {
-  all: revert;
-  height: 16px;
-  width: 18px;
-  cursor: pointer;
+.inputError {
+  color: $error-color;
+  margin-top: -10px;
+  margin-bottom: 0;
 }
 
 .submit {
@@ -105,30 +88,47 @@
   cursor: pointer;
 }
 
-.question {
-  font-size: 12px;
-  line-height: 20px;
-  color: $question-text;
-  text-align: center;
-  margin-top: 10px;
+.tagBlock {
+display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 18px;
 }
 
-.link {
-  text-decoration: none;
-  color: $info-color;
+.tagList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tagElem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+
+.tagInput {
+margin-bottom: 0;
+  width: 276px;
+}
+
+.tagButton {
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid;
+  padding: 8px 39px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.inputError {
+.del{
+border-color: $error-color;
   color: $error-color;
-  margin-top: -10px;
-  margin-bottom: 0;
 }
 
-.checkboxError {
-  font-size: 14px;
-  line-height: 22px;
-  color: $error-color;
-  margin-top: -5px;
-  margin-bottom: -5px;
+.add{
+  border-color: $info-color;
+  color: $info-color;
 }
