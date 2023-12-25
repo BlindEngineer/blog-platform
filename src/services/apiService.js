@@ -52,9 +52,15 @@ const getArticles = (page, token) => (dispatch) => {
     })
 }
 
-const getSingleArticle = (slug) => (dispatch) => {
+const getSingleArticle = (slug, token) => (dispatch) => {
   dispatch(setLoadingOn())
-  fetchResources(`${baseUrl}articles/${slug}`)
+  fetchResources(`${baseUrl}articles/${slug}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((result) => {
       dispatch(setSingleArticle(result.article))
       dispatch(setLoadingOff())

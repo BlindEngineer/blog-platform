@@ -12,11 +12,12 @@ function SingleArticle() {
   const article = useSelector((state) => state.articlesReducer.singleArticle)
   const loading = useSelector((state) => state.articlesReducer.loading)
   const error = useSelector((state) => state.articlesReducer.error)
+  const token = useSelector((state) => state.userReducer.token)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getSingleArticle(slug))
-  }, [dispatch, slug])
+    dispatch(getSingleArticle(slug, token))
+  }, [dispatch, slug, token])
 
   return (
     <>
