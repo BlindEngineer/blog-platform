@@ -26,14 +26,22 @@ async function fetchResources(url, options) {
         Данные, введенные в одном или нескольких полях, не соответствуют условиям. 
         Проверьте правильность передаваемых данных. Удачи! `
       )
+    } else {
+      console.log(result.status)
     }
   }
   return result.json()
 }
 
-const getArticles = (page) => (dispatch) => {
+const getArticles = (page, token) => (dispatch) => {
   dispatch(setLoadingOn())
-  fetchResources(`${baseUrl}articles?limit=5&offset=${5 * (page - 1)}`)
+  fetchResources(`${baseUrl}articles?limit=5&offset=${5 * (page - 1)}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((articles) => {
       dispatch(setArticles(articles))
       dispatch(setArticlesCount(articles))
@@ -86,6 +94,24 @@ const deleteArticle = (slug, token) => (dispatch) => {
     .then(() => {
       dispatch(clearSingleArticle())
       dispatch(setLoadingOff())
+    })
+    .catch((error) => {
+      dispatch(setError(error.message))
+    })
+}
+
+const likeArticle = (slug, currentPage, favorited, token) => (dispatch) => {
+  dispatch(setLoadingOn())
+  fetchResources(`${baseUrl}articles/${slug}/favorite`, {
+    method: `${favorited ? 'DELETE' : 'POST'}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((result) => {
+      dispatch(setSingleArticle(result.article))
+      dispatch(getArticles(currentPage, token))
     })
     .catch((error) => {
       dispatch(setError(error.message))
@@ -154,4 +180,5 @@ export {
   logInUser,
   updateUser,
   deleteArticle,
+  likeArticle,
 }

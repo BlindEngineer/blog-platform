@@ -22,7 +22,7 @@ function ArticlesList() {
     dispatch(setCurrentPage(page))
   }
   const elements = articles.map((article) => {
-    return <ArticlePreview key={nanoid()} article={article} />
+    return <ArticlePreview key={nanoid()} article={article} currentPage={currentPage} />
   })
   return (
     <>

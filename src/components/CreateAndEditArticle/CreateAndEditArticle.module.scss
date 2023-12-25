@@ -9,8 +9,8 @@
   flex-direction: column;
   justify-content: space-between;
   font-family:
-          Inter UI,
-          sans-serif;
+    Inter UI,
+    sans-serif;
 }
 
 .header {
@@ -89,7 +89,7 @@
 }
 
 .tagBlock {
-display: flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-end;
   gap: 18px;
@@ -110,7 +110,7 @@ display: flex;
 }
 
 .tagInput {
-margin-bottom: 0;
+  margin-bottom: 0;
   width: 276px;
 }
 
@@ -123,12 +123,12 @@ margin-bottom: 0;
   cursor: pointer;
 }
 
-.del{
-border-color: $error-color;
+.del {
+  border-color: $error-color;
   color: $error-color;
 }
 
-.add{
+.add {
   border-color: $info-color;
   color: $info-color;
 }

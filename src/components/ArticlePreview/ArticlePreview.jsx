@@ -6,12 +6,11 @@ import { Popconfirm } from 'antd'
 
 import noFoto from '../../assets/img/foto.png'
 import FullText from '../FullText/FullText'
-import { deleteArticle } from '../../services/apiService'
-import { clearSingleArticle } from '../../store/articlesSlice'
+import { deleteArticle, likeArticle } from '../../services/apiService'
 
 import classes from './ArticlePreview.module.scss'
 
-function ArticlePreview({ article }) {
+function ArticlePreview({ article, currentPage }) {
   const { slug: slugParam } = useParams()
   const { slug, title, description, createdAt, tagList, favorited, favoritesCount, author, body } = article
   const { username, image: userAvatar } = author
@@ -50,20 +49,18 @@ function ArticlePreview({ article }) {
     )
   })
   const heartStyle = favorited ? likeIcon : noLikeIcon
-  // const confirm = (e) => {
-  //   console.log(e)
-  //   message.success('Click on Yes')
-  // }
-  // const cancel = (e) => {
-  //   console.log(e)
-  //   message.error('Click on No')
-  // }
 
   const handleDelete = async () => {
     navigate('/', { replace: true })
     await dispatch(deleteArticle(slug, token))
-    dispatch(clearSingleArticle())
   }
+
+  const handleLike = () => {
+    if (token) {
+      dispatch(likeArticle(slug, currentPage, favorited, token))
+    }
+  }
+
   return (
     <div className={container}>
       <div className={headContainer}>
@@ -72,7 +69,7 @@ function ArticlePreview({ article }) {
             <NavLink className={previewTitle} to={`/articles/${slug}`}>
               {title}
             </NavLink>
-            <div className={heartStyle} />
+            <button className={heartStyle} type="button" onClick={handleLike} aria-label="like" />
             <span className={counter}>{favoritesCount}</span>
           </div>
           <ul className={tags}>{previewTags}</ul>

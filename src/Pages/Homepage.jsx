@@ -8,11 +8,12 @@ import { setChangeOff } from '../store/userSlice'
 function Homepage() {
   const dispatch = useDispatch()
   const page = useSelector((state) => state.articlesReducer.currentPage)
+  const token = useSelector((state) => state.userReducer.token)
 
   useEffect(() => {
     dispatch(setChangeOff())
-    dispatch(getArticles(page))
-  }, [dispatch, page])
+    dispatch(getArticles(page, token))
+  }, [dispatch, page, token])
   return <ArticlesList />
 }
 

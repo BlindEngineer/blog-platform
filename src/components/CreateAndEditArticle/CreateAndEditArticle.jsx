@@ -72,7 +72,6 @@ function CreateAndEditArticle() {
   })
 
   const onSubmit = async (data) => {
-    console.log(data)
     const articleInfo = {
       article: {
         title: data.title,
@@ -86,7 +85,6 @@ function CreateAndEditArticle() {
     if (!error) navigate('/', { replace: true })
   }
 
-  console.log(fields)
   return (
     <div className={container}>
       {error ? <ErrorIndicator message={error} /> : null}
@@ -182,7 +180,6 @@ function CreateAndEditArticle() {
           Send
         </button>
       </form>
-      {editMode ? <div>EditArticle {editMode}</div> : <div>CreateArticle</div>}
     </div>
   )
 }

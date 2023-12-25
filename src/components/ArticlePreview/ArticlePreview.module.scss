@@ -51,6 +51,7 @@
   height: 16px;
   background: url('../../assets/img/Heart_corazon1.svg');
   margin-left: 13px;
+  cursor: pointer;
 }
 
 .noLikeIcon {
@@ -58,6 +59,7 @@
   height: 16px;
   background: url('../../assets/img/heart1.svg');
   margin-left: 13px;
+  cursor: pointer;
 }
 
 .counter {
@@ -146,8 +148,8 @@
 
 .button {
   font-family:
-          Inter UI,
-          sans-serif;
+    Inter UI,
+    sans-serif;
   color: $heading-color;
   font-weight: 400;
   font-size: 14px;
@@ -168,4 +170,3 @@
   border-radius: 5px;
   color: $success-color;
 }
-
